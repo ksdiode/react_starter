@@ -1,5 +1,10 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import AppBar from "@mui/material/AppBar";
+import Container from "@mui/material/Container";
+import { IconButton, TextField } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -18,24 +23,32 @@ function App() {
 
   return (
     <div className="App">
-      {user.isLogin ? (
-        <div>
-          {user.user}
-          <button onClick={logout}>로그아웃</button>
-        </div>
-      ) : (
-        <button onClick={() => navigate("/login")}>로그인</button>
-      )}
-      <div>
-        <Link to="/">Home</Link> / <Link to="/todo">Todo</Link>
-      </div>
-      <div>
+      <AppBar position="static">
+        <Container>
+          {user.isLogin ? (
+            <div>
+              {user.user}
+              <IconButton onClick={logout}>
+                <LogoutIcon color="white" />
+              </IconButton>
+            </div>
+          ) : (
+            <IconButton onClick={() => navigate("/login")} color="white">
+              <LogoutIcon color="white" />
+            </IconButton>
+          )}
+          <div>
+            <Link to="/">Home</Link> / <Link to="/todo">Todo</Link>
+          </div>
+        </Container>
+      </AppBar>
+      <Container>
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/todo" element={<Todo />} />
         </Routes>
-      </div>
+      </Container>
     </div>
   );
 }
