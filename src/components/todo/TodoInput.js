@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
+import { IconButton, TextField } from "@mui/material";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import useInput from "../../hooks/input";
 import { useTodo } from "../../store/todo";
 
 const TodoInput = () => {
   const { mode, todo } = useSelector((state) => state.todo);
   const { addTodo, setTodo, setMode } = useTodo();
-
+  const todoRef = useRef();
   const [todoProps, resetTodo] = useInput();
 
   useEffect(() => {
@@ -32,17 +36,29 @@ const TodoInput = () => {
       });
     }
     setMode("add", {});
+    todoRef.current.focus();
   };
 
   const handleReset = () => {
     resetTodo();
+    setMode("add", {});
   };
 
   return (
     <div style={{ display: "flex" }}>
-      <input {...todoProps} style={{ flexGrow: 1 }} />
-      <button onClick={handleSave}>{mode === "add" ? "추가" : "수정"}</button>
-      <button onClick={handleReset}>리셋</button>
+      <TextField
+        inputRef={todoRef}
+        {...todoProps}
+        label="할일"
+        variant="standard"
+        sx={{ flexGrow: 1 }}
+      />
+      <IconButton onClick={handleSave}>
+        {mode === "add" ? <AddCircleOutlineIcon /> : <BorderColorIcon />}
+      </IconButton>
+      <IconButton onClick={handleReset}>
+        <RestartAltIcon />
+      </IconButton>
     </div>
   );
 };

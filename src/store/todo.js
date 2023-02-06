@@ -39,11 +39,6 @@ export const _getTodosThunk = createAsyncThunk(
   "todo/getTodosThunk",
   async (thunkAPI) => {
     try {
-      console.log("----");
-      await asyncTimeout(5000);
-      console.log("완료");
-      console.log("----");
-
       const res = await axios.get("http://localhost:4000/todos");
       return res.data; // action의 payload가 됨
     } catch (error) {
