@@ -4,13 +4,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom/dist';
 import { useSelector } from 'react-redux';
-import { useUser } from '../store/user';
+import { useUser } from '../../store/user';
 
 import LoginIcon from '@mui/icons-material/Login';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -29,7 +27,6 @@ function UserMenu() {
     setAnchorElUser(null);
   };
 
-  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
   const { logout } = useUser();
 
@@ -83,4 +80,5 @@ function UserMenu() {
     </Box>
   );
 }
+
 export default UserMenu;

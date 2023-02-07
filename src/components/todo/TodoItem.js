@@ -1,8 +1,8 @@
-import { IconButton } from "@mui/material";
-import { useTodo } from "../../store/todo";
+import { Box, IconButton } from '@mui/material';
+import { useTodo } from '../../store/todo';
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const TodoItem = ({ todo }) => {
   const { removeTodo, setTodo, setMode } = useTodo();
@@ -17,17 +17,17 @@ const TodoItem = ({ todo }) => {
   };
 
   const handleEdit = () => {
-    setMode("edit", todo);
+    setMode('edit', todo);
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div>
+    <Box sx={{ display: 'flex' }}>
+      <Box sx={{ mr: 1 }}>
         <input type="checkbox" onChange={handleCheck} checked={todo.done} />
-      </div>
-      <div style={{ flexGrow: 1 }}>
+      </Box>
+      <Box sx={{ flexGrow: 1 }}>
         {todo.title} / {todo.done.toString()}
-      </div>
+      </Box>
 
       <IconButton color="primary" onClick={handleEdit}>
         <EditIcon />
@@ -36,7 +36,7 @@ const TodoItem = ({ todo }) => {
       <IconButton color="error" onClick={handleRemove}>
         <DeleteIcon />
       </IconButton>
-    </div>
+    </Box>
   );
 };
 

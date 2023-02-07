@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Todo from './pages/Todo';
 import { useUser } from './store/user';
-import MyAppBar from './components/MyAppBar';
+import MyAppBar from './components/menu/MyAppBar';
 
 function App() {
   const { loginCheck } = useUser();

@@ -1,4 +1,4 @@
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TodoInput from '../components/todo/TodoInput';
@@ -15,7 +15,9 @@ const Todo = () => {
     <Container>
       <h2>Todo ({loading && '로딩중'})</h2>
       <TodoInput />
-      <TodoList todos={todos} />
+      <Box sx={{ mt: 3 }}>
+        <TodoList todos={todos} />
+      </Box>
     </Container>
   );
 };

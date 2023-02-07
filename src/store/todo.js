@@ -1,15 +1,15 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { asyncTimeout, buildExtraReducers } from "./util";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { buildExtraReducers } from './util';
 
-const name = "todo";
+const name = 'todo';
 
 const initialState = {
   todos: [],
   max_id: 20,
-  mode: "add", // 'add' or 'edit'
-  todo: { title: "", done: false },
+  mode: 'add', // 'add' or 'edit'
+  todo: { title: '', done: false },
 };
 
 const reducers = {
@@ -36,10 +36,10 @@ const reducers = {
 };
 
 export const _getTodosThunk = createAsyncThunk(
-  "todo/getTodosThunk",
+  'todo/getTodosThunk',
   async (thunkAPI) => {
     try {
-      const res = await axios.get("http://localhost:4000/todos");
+      const res = await axios.get('http://localhost:4000/todos');
       return res.data; // action의 payload가 됨
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -52,7 +52,7 @@ const todoSlice = createSlice({
   initialState,
   reducers,
   extraReducers: (builder) =>
-    buildExtraReducers(builder, "todos", _getTodosThunk),
+    buildExtraReducers(builder, 'todos', _getTodosThunk),
 });
 
 export default todoSlice.reducer;

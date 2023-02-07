@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import { createSlice } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 
-const name = "user";
+const name = 'user';
 const initialState = {
   isLogin: false,
   user: null,
@@ -9,19 +9,19 @@ const initialState = {
 
 const reducers = {
   _login(state, { payload: { userId, password } }) {
-    if (userId && password === "1234") {
+    if (userId && password === '1234') {
       state.isLogin = true;
-      localStorage.setItem("userId", userId);
+      localStorage.setItem('userId', userId);
     }
   },
 
   _logout(state) {
     state.isLogin = false;
-    localStorage.removeItem("userId");
+    localStorage.removeItem('userId');
   },
 
   _check(state) {
-    const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem('userId');
     if (userId) {
       state.isLogin = true;
       state.user = userId;
