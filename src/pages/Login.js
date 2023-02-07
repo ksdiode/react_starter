@@ -1,35 +1,89 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import useInput from "../hooks/input";
-import { useUser } from "../store/user";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  CssBaseline,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LoginIcon from '@mui/icons-material/Login';
+
+import useInput from '../hooks/input';
+import { useUser } from '../store/user';
 
 const Login = () => {
   const { isLogin } = useSelector((state) => state.user);
   const { login } = useUser();
-  const [userIdProps] = useInput("");
-  const [passwordProps] = useInput("");
+  const [userIdProps] = useInput('');
+  const [passwordProps] = useInput('');
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isLogin) {
-      navigate("/");
+      navigate('/');
     }
   }, [isLogin]);
 
   return (
-    <div>
-      <h2>로그인</h2>
-
-      <div>
-        <input {...userIdProps} />
-        <input type="password" {...passwordProps} />
-
-        <button onClick={() => login(userIdProps.value, passwordProps.value)}>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
           로그인
-        </button>
-      </div>
-    </div>
+        </Typography>
+
+        <Box component="form" noValidate sx={{ mt: 1 }}>
+          <TextField
+            {...userIdProps}
+            margin="normal"
+            required
+            fullWidth
+            id="userId"
+            label="user Id"
+            name="userId"
+            autoFocus
+          />
+
+          <TextField
+            {...passwordProps}
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+            startIcon={<LoginIcon />}
+            onClick={() => login(userIdProps.value, passwordProps.value)}
+          >
+            로그인
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
