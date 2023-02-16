@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box, CircularProgress, Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import TodoInput from '../components/todo/TodoInput';
@@ -13,7 +13,7 @@ const Todo = () => {
   }, []);
   return (
     <Container>
-      <h2>Todo ({loading && '로딩중'})</h2>
+      <h2>Todo {loading && <CircularProgress />}</h2>
       <TodoInput />
       <Box sx={{ mt: 3 }}>
         <TodoList todos={todos} />

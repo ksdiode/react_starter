@@ -3,16 +3,15 @@ import Menu from '@mui/material/Menu';
 import SmallMenuItems from './SmallMenuItems';
 import SmallMenuIcon from './SmallMenuIcon';
 import { Box } from '@mui/material';
-import { useSelector } from 'react-redux';
-import { useMenu } from '../../store/menu';
 
 function SmallMenu({ pages }) {
-  const { anchor } = useSelector((state) => state.menu);
-  const { open, close } = useMenu();
+  const [anchor, setAnchorElNav] = React.useState(null);
+  const openMenu = (event) => setAnchorElNav(event.currentTarget);
+  const closeMenu = () => setAnchorElNav(null);
 
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-      <SmallMenuIcon onClick={open} />
+      <SmallMenuIcon openMenu={openMenu} />
       <Menu
         id="menu-appbar"
         anchorEl={anchor}
@@ -26,12 +25,12 @@ function SmallMenu({ pages }) {
           horizontal: 'left',
         }}
         open={Boolean(anchor)}
-        onClose={close}
+        onClose={closeMenu}
         sx={{
           display: { xs: 'block', md: 'none' },
         }}
       >
-        <SmallMenuItems pages={pages} />
+        <SmallMenuItems pages={pages} closeMenu={closeMenu} />
       </Menu>
     </Box>
   );

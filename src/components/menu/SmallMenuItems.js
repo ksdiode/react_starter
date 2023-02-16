@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { useMenu } from '../../store/menu';
 
-function SmallMainMenuItems({ pages }) {
-  const { close } = useMenu();
+function SmallMainMenuItems({ pages, closeMenu }) {
   return (
     <>
       {pages.map((page) => (
         <MenuItem
           key={page.title}
-          onClick={close}
+          onClick={closeMenu}
           component={Link}
           to={page.to}
         >

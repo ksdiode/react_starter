@@ -17,11 +17,13 @@ import useInput from '../hooks/input';
 import { useUser } from '../store/user';
 
 const Login = () => {
-  const { isLogin } = useSelector((state) => state.user);
-  const { login } = useUser();
   const [userIdProps] = useInput('');
   const [passwordProps] = useInput('');
+
   const navigate = useNavigate();
+
+  const { isLogin } = useSelector((state) => state.user);
+  const { login } = useUser();
 
   useEffect(() => {
     if (isLogin) {
@@ -43,6 +45,7 @@ const Login = () => {
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
+
         <Typography component="h1" variant="h5">
           로그인
         </Typography>

@@ -2,12 +2,12 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import user from './user';
 import todo from './todo';
-import menu from './menu';
+import blog from './blog';
 
 const reducer = {
   user,
   todo,
-  menu,
+  blog,
 };
 
 const store = configureStore({
