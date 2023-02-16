@@ -15,7 +15,13 @@ const BlogList = () => {
       <PostTable posts={posts} status={status} />
 
       <Box display="flex" justifyContent="center" alignItems="center">
-        <Pagination count={12} value={page ? page : 1} showFirstButton showLastButton onChange={(_, page) => getPage(page)} />
+        <Pagination
+          count={12}
+          value={page ? page : 1}
+          showFirstButton
+          showLastButton
+          onChange={(_, page) => getPage(page)}
+        />
       </Box>
     </div>
   );
